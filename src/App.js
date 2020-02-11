@@ -28,15 +28,19 @@ class App extends Component {
         .toLowerCase()
         .includes(this.state.searchfeild.toLowerCase());
     });
-    return (
-      <div className="tc">
-        <h1 className="f2">RoboFriends</h1>
-        <SearchBox searchChange={this.onSearchChange} />
-        <Scroll>
-          <CardList robots={filtertedrobots} />
-        </Scroll>
-      </div>
-    );
+    if (!this.state.robots.length) {
+      return <h1>Loading</h1>;
+    } else {
+      return (
+        <div className="tc">
+          <h1 className="f2">RoboFriends</h1>
+          <SearchBox searchChange={this.onSearchChange} />
+          <Scroll>
+            <CardList robots={filtertedrobots} />
+          </Scroll>
+        </div>
+      );
+    }
   }
 }
 
